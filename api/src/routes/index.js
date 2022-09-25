@@ -35,6 +35,17 @@ router.put('/pokemons', async (req, res) => {
   }
 })
 
-// router.get()
+router.get('/types', async (req, res) => {
+  try {
+    const types = await Type.findAll()
+    res.json(types)
+  } catch (error) {
+    return res.status(500).json({ message: error.message })
+  }
+})
+
+// router.get('pokemons/:id', async (req, res) => {})
+
+// router.get('pokemons/:name', async (req, res) => {})
 
 module.exports = router
