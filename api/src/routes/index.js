@@ -49,9 +49,8 @@ router.get('/types', async (req, res) => {
 
     const pokemonTypes = await Type.findAll()
     res.send(pokemonTypes)
-    
   } catch (error) {
-    return res.status(500).json({ message: error.message })
+    return res.status(5000).json({ message: error.message })
   }
 })
 
