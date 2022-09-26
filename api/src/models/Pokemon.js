@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
       },
       userCreated: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        defaultValue: true,
         allowNull: false,
       },
     },
