@@ -70,4 +70,13 @@ router.get('/types', async (req, res) => {
   }
 })
 
+
+/* 
+  TODO: 
+  
+  /pokemons/:id
+  /pokemons/name=""
+  
+
+*/
 module.exports = router
