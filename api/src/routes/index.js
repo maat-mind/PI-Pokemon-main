@@ -4,28 +4,6 @@ const axios = require('axios')
 
 const router = Router()
 
-const getApiInfo = async () => {
-  const apiUrl = await axios.get('https://pokeapi.co/api/v2/pokemon')
-  const apiInfo = await apiUrl.data.results.map(async (e) => {
-    const pokemonUrl = await axios.get(e.url)
-
-    return {
-      id: pokemonUrl.data.id,
-      name: pokemonUrl.data.name,
-      img: pokemonUrl.data.sprites.other.home.front_default,
-      types: pokemonUrl.data.types.map((e) => e.type.name),
-      hp: pokemonUrl.data.stats[0].base_stat,
-      attack: pokemonUrl.data.stats[1].base_stat,
-      defense: pokemonUrl.data.stats[2].base_stat,
-      speed: pokemonUrl.data.stats[5].base_stat,
-      weight: pokemonUrl.data.weight,
-      height: pokemonUrl.data.height,
-    }
-  })
-
-  const promise = await Promise.all(apiInfo)
-  return promise
-}
 
 router.get('/pokemons', async (req, res) => {
   try {
