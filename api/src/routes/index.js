@@ -1,8 +1,19 @@
 const { Router } = require('express')
-//const { Pokemon } = require('../models/Pokemon.js')
 const { Pokemon, Type } = require('../db.js')
+const axios = require('axios')
 
 const router = Router()
+
+const getApiInfo = async () => {
+  const apiUrl = await axios.get('https://pokeapi.co/api/v2/pokemon')
+  const apiInfo = await apiUrl.data.results.map(async (e) => {
+    const pokemonUrl = await axios.get(e.url)
+
+    return {
+      name: el,
+    }
+  })
+}
 
 router.get('/pokemons', async (req, res) => {
   try {
