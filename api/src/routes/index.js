@@ -14,14 +14,23 @@ router.get('/pokemons', async (req, res) => {
   }
 })
 
-router.put('/pokemons', async (req, res) => {
-  const { name, health, attack, defense, speed, height, weight, userCreated } =
-    req.body
+router.post('/pokemons', async (req, res) => {
+  const {
+    types,
+    name,
+    hp,
+    attack,
+    defense,
+    speed,
+    height,
+    weight,
+    userCreated,
+  } = req.body
 
   try {
     const newPokemon = await Pokemon.create({
       name,
-      health,
+      hp,
       attack,
       defense,
       speed,
@@ -30,7 +39,14 @@ router.put('/pokemons', async (req, res) => {
       userCreated,
     })
 
-    res.json(newPokemon)
+    types.forEach(async (e) => {
+      let pokemonType = await Type.findAll({
+        where: { name: e },
+      })
+      await newPokemon.addType(pokemonType)
+    })
+
+    res.send('Created Successfully')
   } catch (error) {
     return res.status(500).json({ message: error.message })
   }
