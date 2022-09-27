@@ -5,9 +5,36 @@ const { getAllPokemons } = require('../controllers')
 
 const router = Router()
 
-router.get('/pokemons', async (req, res) => {
+router.get('/pokemons/:id', async (req, res) => {
+  const id = req.params.id
+
   try {
-    const pokemons = await Pokemon.findAll()
+    const pokemons = await getAllPokemons()
+
+    let name = pokemons.filter((e) => {
+      return e.id == id
+    })
+
+    res.json(name)
+  } catch (error) {
+    return res.status(500).json({ message: error.message })
+  }
+})
+
+router.get('/pokemons', async (req, res) => {
+  const pokemon = req.query.name
+
+  try {
+    let pokemons = await getAllPokemons()
+
+    if (pokemon) {
+      let name = pokemons.filter((e) => {
+        return e.name.toLowerCase() === pokemon.toLowerCase()
+      })
+
+      res.status(200).send(name)
+    }
+
     res.json(pokemons)
   } catch (error) {
     return res.status(500).json({ message: error.message })
@@ -70,13 +97,4 @@ router.get('/types', async (req, res) => {
   }
 })
 
-
-/* 
-  TODO: 
-  
-  /pokemons/:id
-  /pokemons/name=""
-  
-
-*/
 module.exports = router
