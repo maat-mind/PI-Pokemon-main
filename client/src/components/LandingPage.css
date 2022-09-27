@@ -1,0 +1,23 @@
+body {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 90vh;
+
+  background: url(../assets/img/emerald_low.gif) center;
+  background-position-y: 10%;
+}
+
+h1 {
+  margin: 6vh auto;
+
+  font-size: 1.8rem;
+  font-family: PokemonGB;
+}
+
+button {
+  padding: 10px;
+
+  font-family: PokemonGB;
+}
