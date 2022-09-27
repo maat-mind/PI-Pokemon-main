@@ -1,7 +1,4 @@
 body {
-  display: flex;
-  justify-content: center;
-
   width: 100%;
   height: 90vh;
 
@@ -9,7 +6,25 @@ body {
   background-position-y: 10%;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 95vh;
+}
+
+.pokedex-title {
+  width: 100%;
+  height: 200px;
+
+  background: url(../assets/img/pokedex.png) center no-repeat;
+}
+
 h1 {
+  align-items: flex-start;
   margin: 6vh auto;
 
   font-size: 1.8rem;
@@ -17,7 +32,26 @@ h1 {
 }
 
 button {
-  padding: 10px;
+  align-items: flex-end;
+  padding: 15px 35px 15px 5px;
 
+  font-size: 1.2rem;
   font-family: PokemonGB;
+
+  border: 8px double;
+}
+
+.focus-option {
+  position: relative;
+  left: 15px;
+
+  opacity: 0;
+}
+
+button:hover .focus-option {
+  opacity: 1;
+}
+
+h2 {
+  font-size: 1rem;
 }
