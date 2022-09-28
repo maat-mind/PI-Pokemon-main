@@ -13,14 +13,19 @@ body {
   align-items: center;
 
   width: 100%;
-  height: 95vh;
+  height: 90vh;
 }
 
-.pokedex-title {
-  width: 100%;
-  height: 200px;
+@media screen and (max-width: 480px) {
+  img {
+    width: 300px;
+  }
+}
 
-  background: url(../assets/img/pokedex.png) center no-repeat;
+img {
+  width: 400px;
+
+  margin: 20px;
 }
 
 h1 {
@@ -54,4 +59,5 @@ button:hover .focus-option {
 
 h2 {
   font-size: 1rem;
+  color: black;
 }
