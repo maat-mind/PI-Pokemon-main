@@ -11,10 +11,12 @@ import {
   ORDER_BY_NAME,
 } from './types.js'
 
+const URL = 'http://localhost:3001'
+
 export const getAllPokemons = () => {
   return async (dispatch) => {
     try {
-      let pokemons = await axios.get('/pokemons', {})
+      let pokemons = await axios.get(`${URL}/pokemons`)
 
       return dispatch({
         type: GET_POKEMONS,
@@ -34,7 +36,7 @@ export const getAllPokemons = () => {
 export const getByName = (name) => {
   return async (dispatch) => {
     try {
-      let pokemon = await axios.get(`/pokemons?name=${name}`)
+      let pokemon = await axios.get(`${URL}/pokemons?name=${name}`)
 
       return dispatch({
         type: GET_BY_NAME,
@@ -74,7 +76,7 @@ export const getTypes = () => {
 export const postPokemon = (payload) => {
   return async (dispatch) => {
     try {
-      let newPokemon = await axios.post('/pokemons', payload)
+      let newPokemon = await axios.post(`${URL}/pokemons`, payload)
       return newPokemon
     } catch (error) {
       return dispatch({
@@ -90,7 +92,7 @@ export const postPokemon = (payload) => {
 export const getDetail = (id) => {
   return async (dispatch) => {
     try {
-      let pokemon = await axios.get(`/pokemons/${id}`)
+      let pokemon = await axios.get(`${URL}/pokemons/${id}`)
       return dispatch({
         type: GET_DETAIL,
         payload: pokemon.data,
