@@ -1,19 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Pokedex from '../../assets/img/pokedex.png'
-import './LandingPage.css'
+import style from './LandingPage.module.css'
 
 export default function LandingPage() {
   return (
-    <div className='container'>
-      <img src={Pokedex} alt='' />
+    <div className={style.container}>
+      <img className={style.pokedexImage} src={Pokedex} alt='pokedex title' />
       <Link to='/home'>
-        <button>
-          <span className='focus-option'> ▶</span> Ingresar
+        <button className={style.buttonAccess}>
+          <span className={style.focusOption}> ▶</span> Ingresar
         </button>
       </Link>
-      <footer>
-        <h2>con cariño maat-mind 💛</h2>
+      <footer className={style.footerLandingPage}>
+        <p>con cariño maat-mind 💛</p>
       </footer>
     </div>
   )

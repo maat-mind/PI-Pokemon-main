@@ -11,27 +11,13 @@
   background-position-y: 10%;
 }
 
-@media screen and (max-width: 480px) {
-  img {
-    width: 300px;
-  }
-}
-
-img {
+.pokedexImage {
   width: 400px;
 
   margin: 20px;
 }
 
-h1 {
-  align-items: flex-start;
-  margin: 6vh auto;
-
-  font-size: 1.8rem;
-  font-family: PokemonGB;
-}
-
-button {
+.buttonAccess {
   align-items: flex-end;
   padding: 15px 35px 15px 5px;
 
@@ -41,23 +27,18 @@ button {
   border: 8px double;
 }
 
-.focus-option {
+.focusOption {
   position: relative;
   left: 15px;
 
   opacity: 0;
 }
 
-button:hover .focus-option {
+.buttonAccess:hover .focusOption {
   opacity: 1;
 }
 
-h2 {
-  font-size: 1rem;
-  color: black;
-}
-
-footer {
+.footerLandingPage {
   display: grid;
   place-items: center;
 
