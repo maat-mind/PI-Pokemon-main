@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.css'
-import CreatePokemon from './components/CreatePokemon.jsx'
-import DetailPokemon from './components/DetailPokemon.jsx'
+import CreatePokemon from './components/CreatePokemon/CreatePokemon.jsx'
+import DetailPokemon from './components/DetailPokemon/DetailPokemon.jsx'
 import Home from './components/Home.jsx'
-import LandingPage from './components/LandingPage.jsx'
+import LandingPage from './components/LandingPage/LandingPage.jsx'
 
 function App() {
   return (
