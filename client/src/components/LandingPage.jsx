@@ -13,7 +13,9 @@ export default function LandingPage() {
           <span className='focus-option'> ▶</span> Ingresar
         </button>
       </Link>
-      <h2>con cariño maat-mind 💛</h2>
+      <footer>
+        <h2>con cariño maat-mind 💛</h2>
+      </footer>
     </div>
   )
 }

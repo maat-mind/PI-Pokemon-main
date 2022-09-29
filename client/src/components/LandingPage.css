@@ -1,11 +1,3 @@
-body {
-  width: 100%;
-  height: 90vh;
-
-  background: url(../assets/img/emerald_low.gif) center;
-  background-position-y: 10%;
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -13,7 +5,10 @@ body {
   align-items: center;
 
   width: 100%;
-  height: 90vh;
+  height: 100vh;
+
+  background: url(../assets/img/emerald_low.gif) center;
+  background-position-y: 10%;
 }
 
 @media screen and (max-width: 480px) {
@@ -60,4 +55,14 @@ button:hover .focus-option {
 h2 {
   font-size: 1rem;
   color: black;
+}
+
+footer {
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  height: 5vh;
+
+  background-color: rgb(111, 208, 145);
 }
