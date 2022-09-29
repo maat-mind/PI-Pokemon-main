@@ -18,12 +18,17 @@
   background-color: rgba(41, 41, 33, 0.8);
 }
 
+.filters {
+  width: 40%;
+}
+
 .pokecenterIcon {
   position: absolute;
   left: 0;
   right: 0;
+  top: 0;
 
-  width: 120px;
+  width: 140px;
 
   margin-right: auto;
   margin-left: auto;
@@ -35,6 +40,24 @@
   -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  width: 80vw;
+
+  padding: 15px;
+  margin: 0 auto;
+
+  background-color: rgba(41, 41, 33, 0.6);
+}
+
+.pokemonCard {
+  width: 200px;
+  height: auto;
 }
 
 .footerHome {

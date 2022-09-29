@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getAllPokemons } from '../actions'
@@ -22,14 +22,14 @@ const Home = () => {
   return (
     <div className={style.container}>
       <header className={style.headerHome}>
-        <Link to='/create'>Crear Pokemón</Link>
-        <button
-          onClick={(e) => {
-            handleClick(e)
-          }}>
-          Cargar todos los pokemón
-        </button>
-        <section>
+        <section className={style.filters}>
+          <Link to='/create'>Crear Pokemón</Link>
+          <button
+            onClick={(e) => {
+              handleClick(e)
+            }}>
+            Cargar todos los pokemón
+          </button>
           <select>
             <option value='az'>Ascendente</option>
             <option value='za'>Descendente</option>
@@ -50,10 +50,10 @@ const Home = () => {
           alt='pokecenter icon'
         />
       </header>
-      <section>
+      <section className={style.cards}>
         {allPokemons?.map((p) => {
           return (
-            <span>
+            <span className={style.pokemonCard}>
               <Link to={`/home/${p.id}`}></Link>
               <Card
                 name={p.name}

@@ -1,4 +1,5 @@
 import React from 'react'
+import style from './Card.module.css'
 
 const Card = ({
   name,
@@ -14,14 +15,14 @@ const Card = ({
   return (
     <>
       <h1>{name}</h1>
-      <img src={img} alt={name} />
-      <p>{hp}</p>
-      <p>{attack}</p>
-      <p>{defense}</p>
-      <p>{weight}</p>
-      <p>{height}</p>
-      <p>{speed}</p>
-      <p>{types}</p>
+      <img className={style.pokemonImage} src={img} alt={name} />
+      <p>hp: {hp}</p>
+      <p>attack: {attack}</p>
+      <p>defense: {defense}</p>
+      <p>weight: {weight}</p>
+      <p>height: {height}</p>
+      <p>speed: {speed}</p>
+      <p>types: {types}</p>
     </>
   )
 }
