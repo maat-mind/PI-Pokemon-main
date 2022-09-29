@@ -53,20 +53,21 @@ const Home = () => {
       <section className={style.cards}>
         {allPokemons?.map((p) => {
           return (
-            <span className={style.pokemonCard}>
-              <Link to={`/home/${p.id}`}></Link>
-              <Card
-                name={p.name}
-                img={p.img}
-                hp={p.hp}
-                attack={p.attack}
-                defense={p.defense}
-                weight={p.weight}
-                height={p.height}
-                speed={p.speed}
-                types={p.types}
-              />
-            </span>
+            <>
+              <Link to={`/home/${p.id}`}>
+                <Card
+                  name={p.name}
+                  img={p.img}
+                  hp={p.hp}
+                  attack={p.attack}
+                  defense={p.defense}
+                  weight={p.weight}
+                  height={p.height}
+                  speed={p.speed}
+                  types={p.types}
+                />
+              </Link>
+            </>
           )
         })}
       </section>

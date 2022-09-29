@@ -6,7 +6,7 @@
   width: 100%;
   min-height: 100vh;
 
-  background: url(../assets/img/pokecenter.jpg) center no-repeat;
+  background: url(../assets/img/pokecenter.jpg) center;
 }
 
 .headerHome {
@@ -15,7 +15,7 @@
 
   padding: 20px 10px;
 
-  background-color: rgba(41, 41, 33, 0.8);
+  background-color: rgba(41, 41, 33, 1);
 }
 
 .filters {
@@ -52,12 +52,10 @@
   padding: 15px;
   margin: 0 auto;
 
-  background-color: rgba(41, 41, 33, 0.6);
-}
+  margin-top: 20px;
+  margin-bottom: 20px;
 
-.pokemonCard {
-  width: 200px;
-  height: auto;
+  background-color: rgba(41, 41, 33, 0.6);
 }
 
 .footerHome {
