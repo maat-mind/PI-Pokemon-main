@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getAllPokemons } from '../actions'
-import Pockecenter from '../assets/icons/pokecenter_icon.png'
+import Pokecenter from '../assets/icons/pokecenter_icon.png'
 import Card from './Card/Card'
 import style from './Home.module.css'
 
@@ -46,7 +46,7 @@ const Home = () => {
         </section>
         <img
           className={style.pokecenterIcon}
-          src={Pockecenter}
+          src={Pokecenter}
           alt='pokecenter icon'
         />
       </header>
