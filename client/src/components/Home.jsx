@@ -1,14 +1,37 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getAllPokemons } from '../actions'
 import Pokecenter from '../assets/icons/pokecenter_icon.png'
 import Card from './Card/Card'
 import style from './Home.module.css'
+import Pagination from './Pagination/Pagination'
 
 const Home = () => {
   const dispatch = useDispatch()
   const allPokemons = useSelector((state) => state.pokemons)
+
+  // Pagination
+  const [pokemonPerPage] = useState(12)
+  const [range, setRange] = useState({ first: 0, last: 12 })
+  const [currentPage, setCurrentPage] = useState(1)
+  const pagination = (page) => {
+    setCurrentPage(page)
+  }
+  const [currentPokemons, setCurrentPokemons] = useState(
+    allPokemons?.slice(range.first, range.last)
+  )
+
+  useEffect(() => {
+    setCurrentPokemons(allPokemons?.slice(range.first, range.last))
+  }, [allPokemons, range.first, range.last])
+
+  useEffect(() => {
+    setRange({
+      first: (currentPage - 1) * pokemonPerPage,
+      last: currentPage * pokemonPerPage,
+    })
+  }, [currentPage, pokemonPerPage])
 
   useEffect(() => {
     dispatch(getAllPokemons())
@@ -17,6 +40,8 @@ const Home = () => {
   const handleClick = (e) => {
     e.preventDefault()
     dispatch(getAllPokemons())
+    setCurrentPage(1)
+    setCurrentPokemons(allPokemons?.slice(range.first, range.last))
   }
 
   return (
@@ -50,8 +75,16 @@ const Home = () => {
           alt='pokecenter icon'
         />
       </header>
+
+      <Pagination
+        pokemonPerPage={pokemonPerPage}
+        allPokemons={allPokemons?.length}
+        pagination={pagination}
+        currentPage={currentPage}
+      />
+
       <section className={style.cards}>
-        {allPokemons?.map((p) => {
+        {currentPokemons?.map((p) => {
           return (
             <>
               <Link to={`/home/${p.id}`}>
