@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { filterByType, getAllPokemons } from '../actions'
+import { filterByType, filterByUserCreated, getAllPokemons } from '../actions'
 import Pokecenter from '../assets/icons/pokecenter_icon.png'
 import Card from './Card/Card'
 import style from './Home.module.css'
@@ -12,14 +12,14 @@ const Home = () => {
   const allPokemons = useSelector((state) => state.pokemons)
 
   // Filter
-  const [types, setTypes] = useState('all')
-
-  function HandleFilterByType(e) {
+  const handleFilterByType = (e) => {
     e.preventDefault()
     dispatch(filterByType(e.target.value))
-    setCurrentPage(1)
-    setCurrentPokemons(allPokemons?.slice(range.first, range.last))
-    setTypes(e.target.value)
+  }
+
+  const handleFilterByUserCreated = (e) => {
+    e.preventDefault()
+    dispatch(filterByUserCreated(e.target.value))
   }
 
   // Pagination
@@ -50,7 +50,6 @@ const Home = () => {
 
   const handleClick = (e) => {
     e.preventDefault()
-    setTypes('all')
     setCurrentPage(1)
     dispatch(getAllPokemons())
   }
@@ -70,7 +69,10 @@ const Home = () => {
             <option value='az'>Ascendente</option>
             <option value='za'>Descendente</option>
           </select>
-          <select>
+          <select
+            onChange={(e) => {
+              handleFilterByUserCreated(e)
+            }}>
             <option value='all'>Todos</option>
             <option value='api'>Originales</option>
             <option value='created'>Creados</option>
@@ -80,9 +82,8 @@ const Home = () => {
             <option value='attack'>Por ataque</option>
           </select>
           <select
-            value={types}
             onChange={(e) => {
-              HandleFilterByType(e)
+              handleFilterByType(e)
             }}>
             <option value='all'>Todos los tipos</option>
             <option value='bug'>Bug</option>
@@ -98,10 +99,10 @@ const Home = () => {
             <option value='ground'>Ground</option>
             <option value='ice'>Ice</option>
             <option value='normal'>Normal</option>
-            <option value='shadow'>Shadow</option>
             <option value='poison'>Poison</option>
             <option value='physic'>Psychic</option>
             <option value='rock'>Rock</option>
+            <option value='shadow'>Shadow</option>
             <option value='steel'>Steel</option>
             <option value='water'>Water</option>
             <option value='unknown'>Unknown</option>

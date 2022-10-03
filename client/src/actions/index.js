@@ -98,7 +98,6 @@ export const getDetail = (id) => {
 }
 
 export const filterByType = (payload) => {
-  console.log('action: ', payload)
   return {
     type: 'FILTER_BY_TYPE',
     payload,
@@ -106,6 +105,7 @@ export const filterByType = (payload) => {
 }
 
 export const filterByUserCreated = (payload) => {
+  console.log('action: ', payload)
   return {
     type: 'FILTER_CREATED',
     payload,
