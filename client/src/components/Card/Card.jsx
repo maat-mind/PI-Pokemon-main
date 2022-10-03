@@ -6,6 +6,7 @@ import hpIcon from '../../assets/icons/hp.png'
 import speedIcon from '../../assets/icons/speed.png'
 import weightIcon from '../../assets/icons/weight.png'
 import style from './Card.module.css'
+import './Types.css'
 
 const Card = ({
   name,
@@ -40,19 +41,23 @@ const Card = ({
           {defense}
         </p>
         <p>
-          <img className={style.statIcon} src={weightIcon} alt='weight icon' />
-          {weight}
-        </p>
-        <p>
-          <img className={style.statIcon} src={heightIcon} alt='height icon' />
-          {height}
-        </p>
-        <p>
           <img className={style.statIcon} src={speedIcon} alt='speed icon' />
           {speed}
         </p>
+        <p>
+          <img className={style.statIcon} src={weightIcon} alt='weight icon' />
+          {weight} hg
+        </p>
+        <p>
+          <img className={style.statIcon} src={heightIcon} alt='height icon' />
+          {height} dm
+        </p>
       </div>
-      {/* <p>{types.map((e) => ` ${e} `)}</p> */}
+      <p>
+        {types.map((e) => {
+          return <span className={`${style.type} ${e}`}>{e}</span>
+        })}
+      </p>
     </section>
   )
 }
