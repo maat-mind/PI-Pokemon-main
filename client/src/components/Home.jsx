@@ -16,7 +16,14 @@ const Home = () => {
   const dispatch = useDispatch()
   const allPokemons = useSelector((state) => state.pokemons)
 
-  // Filter
+  const [pokemonPerPage] = useState(12)
+  const [order, setOrder] = useState('')
+  const [range, setRange] = useState({ first: 0, last: 12 })
+  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPokemons, setCurrentPokemons] = useState(
+    allPokemons?.slice(range.first, range.last)
+  )
+
   const handleFilterByType = (e) => {
     dispatch(filterByType(e.target.value))
   }
@@ -25,21 +32,21 @@ const Home = () => {
     dispatch(filterByUserCreated(e.target.value))
   }
 
-  // Sort
   const handleSort = (e) => {
+    e.preventDefault()
     dispatch(orderByName(e.target.value))
+    setCurrentPage(1)
+    setOrder(e.target.value)
   }
 
-  // Pagination
-  const [pokemonPerPage] = useState(12)
-  const [range, setRange] = useState({ first: 0, last: 12 })
-  const [currentPage, setCurrentPage] = useState(1)
   const pagination = (page) => {
     setCurrentPage(page)
   }
-  const [currentPokemons, setCurrentPokemons] = useState(
-    allPokemons?.slice(range.first, range.last)
-  )
+
+  const handleRefresh = (e) => {
+    e.preventDefault()
+    dispatch(getAllPokemons())
+  }
 
   useEffect(() => {
     setCurrentPokemons(allPokemons?.slice(range.first, range.last))
@@ -55,12 +62,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(getAllPokemons())
   }, [dispatch])
-
-  const handleRefresh = (e) => {
-    e.preventDefault()
-    setCurrentPage(1)
-    dispatch(getAllPokemons())
-  }
 
   return (
     <div className={style.container}>
