@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { filterByType, filterByUserCreated, getAllPokemons } from '../actions'
+import {
+  filterByType,
+  filterByUserCreated,
+  getAllPokemons,
+  orderByName,
+} from '../actions'
 import Pokecenter from '../assets/icons/pokecenter_icon.png'
 import Card from './Card/Card'
 import style from './Home.module.css'
@@ -13,13 +18,16 @@ const Home = () => {
 
   // Filter
   const handleFilterByType = (e) => {
-    e.preventDefault()
     dispatch(filterByType(e.target.value))
   }
 
   const handleFilterByUserCreated = (e) => {
-    e.preventDefault()
     dispatch(filterByUserCreated(e.target.value))
+  }
+
+  // Sort
+  const handleSort = (e) => {
+    dispatch(orderByName(e.target.value))
   }
 
   // Pagination
@@ -48,7 +56,7 @@ const Home = () => {
     dispatch(getAllPokemons())
   }, [dispatch])
 
-  const handleClick = (e) => {
+  const handleRefresh = (e) => {
     e.preventDefault()
     setCurrentPage(1)
     dispatch(getAllPokemons())
@@ -61,13 +69,17 @@ const Home = () => {
           <Link to='/create'>Crear Pokemón</Link>
           <button
             onClick={(e) => {
-              handleClick(e)
+              handleRefresh(e)
             }}>
             Cargar todos los pokemón
           </button>
-          <select>
-            <option value='az'>Ascendente</option>
-            <option value='za'>Descendente</option>
+          <select
+            onChange={(e) => {
+              handleSort(e)
+            }}>
+            <option value='none'>Ninguna</option>
+            <option value='asc'>Ascendente</option>
+            <option value='desc'>Descendente</option>
           </select>
           <select
             onChange={(e) => {

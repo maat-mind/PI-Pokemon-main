@@ -39,6 +39,32 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemons: pokeState === 'all' ? state.pokemons : created,
       }
+    case 'ORDER_BY_NAME':
+      const sortedArray =
+        action.payload === 'asc'
+          ? pokeState.sort((a, b) => {
+              if (a.name > b.name) {
+                return 1
+              }
+              if (a.name < b.name) {
+                return -1
+              }
+              return 0
+            })
+          : pokeState.sort((a, b) => {
+              if (a.name > b.name) {
+                return -1
+              }
+              if (a.name < b.name) {
+                return 1
+              }
+              return 0
+            })
+
+      return {
+        ...state,
+        sortedArray,
+      }
     default:
       return state
   }
