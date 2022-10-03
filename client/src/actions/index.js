@@ -1,15 +1,4 @@
 import axios from 'axios'
-import {
-  ERROR,
-  FILTER_BY_TYPE,
-  FILTER_CREATED,
-  GET_BY_NAME,
-  GET_DETAIL,
-  GET_POKEMONS,
-  GET_TYPES,
-  ORDER_BY_ATTACK,
-  ORDER_BY_NAME,
-} from './types.js'
 
 const URL = 'http://localhost:3001'
 
@@ -19,12 +8,12 @@ export const getAllPokemons = () => {
       let pokemons = await axios.get(`${URL}/pokemons`)
 
       return dispatch({
-        type: GET_POKEMONS,
+        type: 'GET_POKEMONS',
         payload: pokemons.data,
       })
     } catch (error) {
       return dispatch({
-        type: ERROR,
+        type: 'ERROR',
         payload: {
           message: error.message,
         },
@@ -39,12 +28,12 @@ export const getByName = (name) => {
       let pokemon = await axios.get(`${URL}/pokemons?name=${name}`)
 
       return dispatch({
-        type: GET_BY_NAME,
+        type: 'GET_BY_NAME',
         payload: pokemon.data,
       })
     } catch (error) {
       return dispatch({
-        type: ERROR,
+        type: 'ERROR',
         payload: {
           message: error.message,
         },
@@ -59,12 +48,12 @@ export const getTypes = () => {
       let types = await axios.get('/types')
 
       return dispatch({
-        type: GET_TYPES,
+        type: 'GET_TYPES',
         payload: types.data,
       })
     } catch (error) {
       return dispatch({
-        type: ERROR,
+        type: 'ERROR',
         payload: {
           message: error.message,
         },
@@ -80,7 +69,7 @@ export const postPokemon = (payload) => {
       return newPokemon
     } catch (error) {
       return dispatch({
-        type: ERROR,
+        type: 'ERROR',
         payload: {
           message: error.message,
         },
@@ -94,12 +83,12 @@ export const getDetail = (id) => {
     try {
       let pokemon = await axios.get(`${URL}/pokemons/${id}`)
       return dispatch({
-        type: GET_DETAIL,
+        type: 'GET_DETAIL',
         payload: pokemon.data,
       })
     } catch (error) {
       return dispatch({
-        type: ERROR,
+        type: 'ERROR',
         payload: {
           message: error.message,
         },
@@ -108,30 +97,31 @@ export const getDetail = (id) => {
   }
 }
 
-export const filterByName = (payload) => {
+export const filterByType = (payload) => {
+  console.log('action: ', payload)
   return {
-    type: FILTER_BY_TYPE,
+    type: 'FILTER_BY_TYPE',
     payload,
   }
 }
 
 export const filterByUserCreated = (payload) => {
   return {
-    type: FILTER_CREATED,
+    type: 'FILTER_CREATED',
     payload,
   }
 }
 
 export const orderByAttack = (payload) => {
   return {
-    type: ORDER_BY_ATTACK,
+    type: 'ORDER_BY_ATTACK',
     payload,
   }
 }
 
 export const orderByName = (payload) => {
   return {
-    type: ORDER_BY_NAME,
+    type: 'ORDER_BY_NAME',
     payload,
   }
 }

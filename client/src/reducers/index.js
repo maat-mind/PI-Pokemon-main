@@ -1,19 +1,5 @@
-import {
-  ERROR,
-  FILTER_BY_TYPE,
-  FILTER_CREATED,
-  GET_BY_NAME,
-  GET_DETAIL,
-  GET_POKEMONS,
-  GET_TYPES,
-  ORDER_BY_ATTACK,
-  ORDER_BY_NAME,
-  POST_POKEMON,
-} from '../actions/types'
-
 const initialState = {
   pokemons: [],
-  allPokemons: [],
   types: [],
   pokemonDetail: [],
   error: [],
@@ -21,31 +7,28 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ERROR:
+    case 'ERROR':
       return {
         ...state,
         error: action.payload,
       }
-    case GET_POKEMONS:
+    case 'GET_POKEMONS':
       return {
         ...state,
         pokemons: action.payload,
       }
-    case FILTER_BY_TYPE:
-      const pokemons = state.allPokemons
+    case 'FILTER_BY_TYPE':
+      const pokemons = state.pokemons
       const pokemonByType =
-        action.payload === 'All'
+        action.payload === 'all'
           ? pokemons
-          : pokemons.filter(
-              (e) =>
-                e.types.find((e) => e === action.payload) === action.payload
-            )
-
+          : pokemons.filter((e) => e.types?.includes(action.payload))
+      console.log('reducer: ', pokemonByType)
       return {
         ...state,
         pokemons: pokemonByType,
       }
-    case FILTER_CREATED:
+    case 'FILTER_CREATED':
       const pokemones = state.allPokemons
       const pokemonFCreated =
         action.payload === 'created'
@@ -55,8 +38,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemons: action.payload === 'All' ? pokemones : pokemonFCreated,
       }
-
-    case ORDER_BY_ATTACK:
+    case 'ORDER_BY_ATTACK':
       let sortPokemons =
         action.payload === 'Asc'
           ? state.pokemons.sort(function (a, b) {
@@ -81,7 +63,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemons: sortPokemons,
       }
-    case ORDER_BY_NAME:
+    case 'ORDER_BY_NAME':
       let sortName =
         action.payload === 'A-Z'
           ? state.pokemons.sort(function (a, b) {
@@ -106,21 +88,21 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemons: sortName,
       }
-    case GET_BY_NAME:
+    case 'GET_BY_NAME':
       return {
         ...state,
         pokemons: action.payload,
       }
-    case GET_TYPES:
+    case 'GET_TYPES':
       return {
         ...state,
         types: action.payload,
       }
-    case POST_POKEMON:
+    case 'POST_POKEMON':
       return {
         ...state,
       }
-    case GET_DETAIL:
+    case 'GET_DETAIL':
       return {
         ...state,
         pokemonDetail: action.payload,
