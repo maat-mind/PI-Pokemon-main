@@ -69,19 +69,14 @@ const Home = () => {
             <option value='attack'>Por ataque</option>
           </select>
         </section>
-        <img
-          className={style.pokecenterIcon}
-          src={Pokecenter}
-          alt='pokecenter icon'
-        />
+        <Link to={'/'}>
+          <img
+            className={style.pokecenterIcon}
+            src={Pokecenter}
+            alt='pokecenter icon'
+          />
+        </Link>
       </header>
-
-      <Pagination
-        pokemonPerPage={pokemonPerPage}
-        allPokemons={allPokemons?.length}
-        pagination={pagination}
-        currentPage={currentPage}
-      />
 
       <section className={style.cards}>
         {currentPokemons?.map((p) => {
@@ -104,7 +99,14 @@ const Home = () => {
           )
         })}
       </section>
-      <footer className={style.footerHome}></footer>
+      <footer className={style.footerHome}>
+        <Pagination
+          pokemonPerPage={pokemonPerPage}
+          allPokemons={allPokemons?.length}
+          pagination={pagination}
+          currentPage={currentPage}
+        />
+      </footer>
     </div>
   )
 }

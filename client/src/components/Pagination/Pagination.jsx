@@ -16,11 +16,10 @@ const Pagination = ({
     <ul className={styles.pagination}>
       {pageNumbers?.map((n) => {
         return (
-          <li
-            className={currentPage === n ? styles.active : ''}
-            key={n}
-            onClick={() => pagination(n)}>
-            <p className={styles.current}>{n}</p>
+          <li key={n} onClick={() => pagination(n)}>
+            <button className={styles.btnPage}>
+              <p className={styles.page}>{n}</p>
+            </button>
           </li>
         )
       })}
