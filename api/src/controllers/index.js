@@ -29,9 +29,6 @@ const getDbInfo = async () => {
     include: {
       model: Type,
       attributes: ['name'],
-      through: {
-        attributes: [],
-      },
     },
   })
 
