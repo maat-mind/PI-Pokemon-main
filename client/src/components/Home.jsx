@@ -6,7 +6,7 @@ import {
   filterByUserCreated,
   getAllPokemons,
   orderByName,
-} from '../actions'
+} from '../redux/actions'
 import Pokecenter from '../assets/icons/pokecenter_icon.png'
 import Card from './Card/Card'
 import style from './Home.module.css'
