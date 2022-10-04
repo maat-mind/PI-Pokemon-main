@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Pokecenter from '../assets/icons/pokecenter_icon.png'
 import {
   filterByType,
   filterByUserCreated,
   getAllPokemons,
   orderByName,
 } from '../redux/actions'
-import Pokecenter from '../assets/icons/pokecenter_icon.png'
 import Card from './Card/Card'
 import style from './Home.module.css'
 import Pagination from './Pagination/Pagination'
@@ -15,9 +15,8 @@ import Pagination from './Pagination/Pagination'
 const Home = () => {
   const dispatch = useDispatch()
   const allPokemons = useSelector((state) => state.pokemons)
+  const pokemonPerPage = 12
 
-  const [pokemonPerPage] = useState(12)
-  const [order, setOrder] = useState('')
   const [range, setRange] = useState({ first: 0, last: 12 })
   const [currentPage, setCurrentPage] = useState(1)
   const [currentPokemons, setCurrentPokemons] = useState(
@@ -32,20 +31,17 @@ const Home = () => {
     dispatch(filterByUserCreated(e.target.value))
   }
 
-  const handleSort = (e) => {
-    e.preventDefault()
+  const handleSortByName = (e) => {
     dispatch(orderByName(e.target.value))
-    setCurrentPage(1)
-    setOrder(e.target.value)
-  }
-
-  const pagination = (page) => {
-    setCurrentPage(page)
   }
 
   const handleRefresh = (e) => {
     e.preventDefault()
     dispatch(getAllPokemons())
+  }
+  
+  const pagination = (page) => {
+    setCurrentPage(page)
   }
 
   useEffect(() => {
@@ -66,19 +62,31 @@ const Home = () => {
   return (
     <div className={style.container}>
       <header className={style.headerHome}>
-        <section className={style.filters}>
-          <Link to='/create'>Crear Pokemón</Link>
+        <div className={style.buttons}>
+          <Link to='/create'>
+            <button> Crear un Pokemón</button>
+          </Link>
           <button
             onClick={(e) => {
               handleRefresh(e)
             }}>
-            Cargar todos los pokemón
+            Recargar
           </button>
+        </div>
+
+        <Link to={'/'}>
+          <img
+            className={style.pokecenterIcon}
+            src={Pokecenter}
+            alt='pokecenter icon'
+          />
+        </Link>
+        <section className={style.filters}>
           <select
             onChange={(e) => {
-              handleSort(e)
+              handleSortByName(e)
             }}>
-            <option value='none'>Ninguna</option>
+            <option value='none'>Orden</option>
             <option value='asc'>Ascendente</option>
             <option value='desc'>Descendente</option>
           </select>
@@ -86,19 +94,20 @@ const Home = () => {
             onChange={(e) => {
               handleFilterByUserCreated(e)
             }}>
-            <option value='all'>Todos</option>
+            <option value='all'>Origen</option>
             <option value='api'>Originales</option>
             <option value='created'>Creados</option>
           </select>
           <select>
-            <option value='all'>Todos</option>
-            <option value='attack'>Por ataque</option>
+            <option value='none'>Orden ATK</option>
+            <option value='all'>Ascendente</option>
+            <option value='attack'>Descendente</option>
           </select>
           <select
             onChange={(e) => {
               handleFilterByType(e)
             }}>
-            <option value='all'>Todos los tipos</option>
+            <option value='all'>Tipos</option>
             <option value='bug'>Bug</option>
             <option value='dragon'>Dragon</option>
             <option value='dark'>Dark</option>
@@ -121,13 +130,6 @@ const Home = () => {
             <option value='unknown'>Unknown</option>
           </select>
         </section>
-        <Link to={'/'}>
-          <img
-            className={style.pokecenterIcon}
-            src={Pokecenter}
-            alt='pokecenter icon'
-          />
-        </Link>
       </header>
 
       <section className={style.cards}>
