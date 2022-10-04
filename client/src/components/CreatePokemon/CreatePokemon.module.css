@@ -1,0 +1,81 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+
+  background: url(../../assets/img/background.png) center/cover no-repeat;
+}
+
+.createPokemon {
+  display: flex;
+  align-items: center;
+
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.formCreate {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+
+  width: 40%;
+  margin-top: 200px;
+}
+
+.labelCreate {
+  font-size: 1.2rem;
+}
+
+.asideImage {
+  width: 60%;
+}
+
+.imgCreate {
+  width: 600px;
+}
+
+@media screen and (max-width: 1024px) {
+  .createPokemon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 80vw;
+    max-width: 800px;
+    height: 90vh;
+
+    margin: 0 auto;
+    padding: 5px 20px;
+  }
+
+  .formCreate {
+    display: flex;
+    justify-content: center;
+
+    flex-wrap: wrap;
+    gap: 5px;
+
+    width: 40%;
+    margin-top: 20px;
+  }
+
+  .asideImage {
+    width: 100%;
+    margin-top: -200px;
+  }
+
+  .formCreate {
+    width: 100%;
+  }
+
+  .imgCreate {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .imgCreate {
+    width: 300px;
+  }
+}

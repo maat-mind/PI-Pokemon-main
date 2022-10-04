@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Pokedex from '../../assets/img/pokedex.png'
 import style from './LandingPage.module.css'
 
-export default function LandingPage() {
+const LandingPage = () => {
   return (
     <div className={style.container}>
       <img className={style.pokedexImage} src={Pokedex} alt='pokedex title' />
@@ -18,3 +18,5 @@ export default function LandingPage() {
     </div>
   )
 }
+
+export default LandingPage
