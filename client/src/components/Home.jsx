@@ -6,6 +6,7 @@ import {
   filterByType,
   filterByUserCreated,
   getAllPokemons,
+  orderByAttack,
   orderByName,
 } from '../redux/actions'
 import Card from './Card/Card'
@@ -34,6 +35,13 @@ const Home = () => {
   const handleSortByName = (e) => {
     e.preventDefault()
     dispatch(orderByName(e.target.value))
+    setCurrentPage(1)
+    setCurrentPokemons(allPokemons?.slice(range.first, range.last))
+  }
+
+  const handleSortByAttack = (e) => {
+    e.preventDefault()
+    dispatch(orderByAttack(e.target.value))
     setCurrentPage(1)
     setCurrentPokemons(allPokemons?.slice(range.first, range.last))
   }
@@ -89,7 +97,7 @@ const Home = () => {
             onChange={(e) => {
               handleSortByName(e)
             }}>
-            <option value='none'>Orden</option>
+            <option value='all'>Orden</option>
             <option value='asc'>Ascendente</option>
             <option value='desc'>Descendente</option>
           </select>
@@ -101,10 +109,13 @@ const Home = () => {
             <option value='api'>Originales</option>
             <option value='created'>Creados</option>
           </select>
-          <select>
-            <option value='none'>Orden ATK</option>
-            <option value='all'>Ascendente</option>
-            <option value='attack'>Descendente</option>
+          <select
+            onChange={(e) => {
+              handleSortByAttack(e)
+            }}>
+            <option value='all'>Orden ATK</option>
+            <option value='asc'>Ascendente</option>
+            <option value='desc'>Descendente</option>
           </select>
           <select
             onChange={(e) => {
