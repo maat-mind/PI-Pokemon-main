@@ -32,14 +32,17 @@ const Home = () => {
   }
 
   const handleSortByName = (e) => {
+    e.preventDefault()
     dispatch(orderByName(e.target.value))
+    setCurrentPage(1)
+    setCurrentPokemons(allPokemons?.slice(range.first, range.last))
   }
 
   const handleRefresh = (e) => {
     e.preventDefault()
     dispatch(getAllPokemons())
   }
-  
+
   const pagination = (page) => {
     setCurrentPage(page)
   }
