@@ -8,6 +8,14 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   const pokeState = state.pokemons
 
+  const sortAscByName = (a, b) => {
+    return a.name > b.name ? 1 : a.name < b.name ? -1 : 0
+  }
+
+  const sortDescByName = (a, b) => {
+    return a.name > b.name ? -1 : a.name < b.name ? 1 : 0
+  }
+
   switch (action.type) {
     case 'ERROR':
       return {
@@ -42,25 +50,8 @@ const rootReducer = (state = initialState, action) => {
     case 'ORDER_BY_NAME':
       const sortedArray =
         action.payload === 'asc'
-          ? pokeState.sort((a, b) => {
-              if (a.name > b.name) {
-                return 1
-              }
-              if (a.name < b.name) {
-                return -1
-              }
-              return 0
-            })
-          : pokeState.sort((a, b) => {
-              if (a.name > b.name) {
-                return -1
-              }
-              if (a.name < b.name) {
-                return 1
-              }
-              return 0
-            })
-
+          ? pokeState.sort(sortAscByName)
+          : pokeState.sort(sortDescByName)
       return {
         ...state,
         sortedArray,
