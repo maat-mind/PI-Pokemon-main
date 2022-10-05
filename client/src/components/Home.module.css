@@ -42,8 +42,15 @@
   width: 30vw;
 }
 
+.btnPokemon {
+  width: 200px;
+
+  font-size: 0.6rem;
+  font-family: PokemonGB;
+}
+
 .buscarPokemon {
-  width: 60%;
+  width: 180px;
 }
 
 .pokecenterIcon {

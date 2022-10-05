@@ -88,9 +88,10 @@ const Home = () => {
       <header className={style.headerHome}>
         <div className={style.buttons}>
           <Link to='/create'>
-            <button> Crear un Pokemón</button>
+            <button className={style.btnPokemon}> Crear un Pokemón</button>
           </Link>
           <button
+            className={style.btnPokemon}
             onClick={(e) => {
               handleRefresh(e)
             }}>

@@ -21,7 +21,7 @@ const Card = ({
 }) => {
   return (
     <section className={style.pokemonCard}>
-      <h1>{name}</h1>
+      <h1 className={style.pokemonName}>{name}</h1>
       <img className={style.pokemonImage} src={img} alt={name} />
       <div className={style.stats}>
         <p>

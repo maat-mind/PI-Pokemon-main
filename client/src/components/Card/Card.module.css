@@ -18,6 +18,11 @@
   border-radius: 15px;
 
   background-color: rgba(236, 250, 47, 0.4);
+  transition: background-color 1s ease-out 100ms;
+}
+
+.pokemonCard:hover {
+  background-color: rgba(236, 250, 47, 0.8);
 }
 
 .statIcon {
@@ -49,4 +54,8 @@
   color: #fff;
   background-color: #68a090;
   border: 1px solid #44685e;
+}
+
+.pokemonName {
+  font-size: 1.6rem;
 }
