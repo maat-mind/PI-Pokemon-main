@@ -6,6 +6,7 @@ import {
   filterByType,
   filterByUserCreated,
   getAllPokemons,
+  getByName,
   orderByAttack,
   orderByName,
 } from '../redux/actions'
@@ -23,6 +24,18 @@ const Home = () => {
   const [currentPokemons, setCurrentPokemons] = useState(
     allPokemons?.slice(range.first, range.last)
   )
+
+  const [name, setName] = useState('')
+
+  const handleSearchChange = (e) => {
+    e.preventDefault()
+    setName(e.target.value)
+  }
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault()
+    dispatch(getByName(name))
+  }
 
   const handleFilterByType = (e) => {
     dispatch(filterByType(e.target.value))
@@ -83,6 +96,22 @@ const Home = () => {
             }}>
             Recargar
           </button>
+          <span>
+            <input
+              type='text'
+              className={style.buscarPokemon}
+              placeholder='Buscar...'
+              onChange={(e) => {
+                handleSearchChange(e)
+              }}
+            />
+            <button
+              onClick={(e) => {
+                handleSearchSubmit(e)
+              }}>
+              @
+            </button>
+          </span>
         </div>
 
         <Link to={'/'}>
@@ -92,6 +121,7 @@ const Home = () => {
             alt='pokecenter icon'
           />
         </Link>
+
         <section className={style.filters}>
           <select
             onChange={(e) => {

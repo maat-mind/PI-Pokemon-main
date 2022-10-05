@@ -32,7 +32,7 @@ router.get('/pokemons', async (req, res) => {
         return e.name.toLowerCase() === pokemon.toLowerCase()
       })
 
-      res.status(200).send(name)
+      return res.json(name)
     }
 
     res.json(pokemons)

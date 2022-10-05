@@ -70,7 +70,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         sortedByAttack,
       }
-
+    case 'GET_BY_NAME':
+      return {
+        ...state,
+        pokemons: action.payload,
+      }
     default:
       return state
   }

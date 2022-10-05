@@ -36,9 +36,14 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 
   gap: 5px;
   width: 30vw;
+}
+
+.buscarPokemon {
+  width: 60%;
 }
 
 .pokecenterIcon {
