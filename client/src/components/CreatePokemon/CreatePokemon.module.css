@@ -2,80 +2,75 @@
   width: 100vw;
   height: 100vh;
 
+  padding: 100px 0;
+
   background: url(../../assets/img/background.png) center/cover no-repeat;
 }
 
-.createPokemon {
-  display: flex;
-  align-items: center;
+.container h1 {
+  font-size: 1.8rem;
+  font-family: PokemonGB;
 
-  max-width: 1024px;
-  margin: 0 auto;
+  margin-left: 5%;
 }
 
-.formCreate {
+.titleCreate {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
-
-  width: 40%;
-  margin-top: 200px;
+  align-items: center;
 }
 
-.labelCreate {
+.titleCreate button {
+  width: auto;
+  height: auto;
+
+  padding: 0 5px;
+
   font-size: 1.2rem;
 }
 
-.asideImage {
-  width: 60%;
+.formCreate {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  row-gap: 16px;
+
+  max-width: 600px;
+
+  margin: 2rem auto 0 auto;
+  padding: 3.5%;
+
+  background-color: rgba(41, 41, 33, 0.6);
 }
 
-.imgCreate {
-  width: 600px;
+.formCreate input {
+  border: 1px solid #9c9c9c;
 }
 
-@media screen and (max-width: 1024px) {
-  .createPokemon {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.formCreate button {
+  grid-column: 1 / 3;
 
-    width: 80vw;
-    max-width: 800px;
-    height: 90vh;
+  width: 100%;
+  padding: 0.7em;
 
-    margin: 0 auto;
-    padding: 5px 20px;
-  }
+  font-family: PokemonGB;
 
-  .formCreate {
-    display: flex;
-    justify-content: center;
-
-    flex-wrap: wrap;
-    gap: 5px;
-
-    width: 40%;
-    margin-top: 20px;
-  }
-
-  .asideImage {
-    width: 100%;
-    margin-top: -200px;
-  }
-
-  .formCreate {
-    width: 100%;
-  }
-
-  .imgCreate {
-    width: 400px;
-  }
+  background: lightgray;
 }
 
-@media screen and (max-width: 720px) {
-  .imgCreate {
-    width: 300px;
-  }
+.formCreate label {
+  grid-column: 1 / 2;
+  align-self: center;
+
+  font-family: PokemonGB;
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+.formCreate input {
+  padding: 0.7em;
+  margin-bottom: 0.5rem;
+}
+
+.formCreate input:focus {
+  outline: 3px solid gold;
 }

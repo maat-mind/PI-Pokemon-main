@@ -32,6 +32,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemons: action.payload,
       }
+    case 'GET_TYPES':
+      return {
+        ...state,
+        types: action.payload
+      }
     case 'FILTER_BY_TYPE':
       const pokemonByType =
         action.payload === 'all'
@@ -74,6 +79,10 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemons: action.payload,
+      }
+    case 'POST_POKEMON':
+      return {
+        ...state,
       }
     default:
       return state
