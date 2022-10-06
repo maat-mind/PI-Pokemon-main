@@ -45,7 +45,7 @@ export const getByName = (name) => {
 export const getTypes = () => {
   return async (dispatch) => {
     try {
-      let types = await axios.get('/types')
+      let types = await axios.get(`${URL}/types`)
 
       return dispatch({
         type: 'GET_TYPES',

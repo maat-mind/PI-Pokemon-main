@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { getTypes, postPokemon } from '../../redux/actions'
 import style from './CreatePokemon.module.css'
 
@@ -19,6 +19,38 @@ const CreatePokemon = () => {
     types: [],
   })
 
+  const handleChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    })
+    console.log(input)
+  }
+
+  const handleSelect = (e) => {
+    setInput({
+      ...input,
+      types: [...input.types, e.target.value],
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(postPokemon(input))
+    alert('¡Creaste un Pokemón!')
+
+    setInput({
+      name: '',
+      hp: 0,
+      attack: 0,
+      defense: 0,
+      speed: 0,
+      weight: 0,
+      height: 0,
+      types: [],
+    })
+  }
+
   useEffect(() => {
     dispatch(getTypes())
   }, [dispatch])
@@ -29,89 +61,51 @@ const CreatePokemon = () => {
         <Link to='/home'>
           <button>◃</button>
         </Link>
-        <h1>Crea tu pokemón</h1>
+        <h1 className={style.title}>Crea tu pokemón</h1>
       </span>
       <form className={style.formCreate}>
-        <label
-          className={style.labelCreate}
-          type='text'
-          value={input.name}
-          name='name'
-          for='name'>
-          Nombre :
-        </label>
-        <input id={input.name} />
-        <label
-          className={style.labelCreate}
-          type='number'
-          value={input.attack}
-          name='attack'
-          for='attack'>
-          Ataque :
-        </label>
-        <input id={input.attack} />
+        <label for='name'>Nombre :</label>
+        <input type='text' name='name' onChange={(e) => handleChange(e)} />
 
-        <label
-          className={style.labelCreate}
-          type='number'
-          value={input.defense}
-          name='defense'
-          for='defense'>
-          Defensa :
-        </label>
-        <input id={input.defense} />
+        <label for='attack'>Ataque :</label>
+        <input type='number' name='attack' onChange={(e) => handleChange(e)} />
 
-        <label
-          className={style.labelCreate}
-          type='number'
-          value={input.hp}
-          name='hp'
-          for='hp'>
-          Vida :
-        </label>
-        <input id={input.hp} />
+        <label for='defense'>Defensa :</label>
+        <input type='number' name='defense' onChange={(e) => handleChange(e)} />
 
-        <label
-          className={style.labelCreate}
-          type='number'
-          value={input.speed}
-          name='speed'
-          for='speed'>
-          Velocidad :
-        </label>
-        <input id={input.speed} />
+        <label for='hp'>Vida :</label>
+        <input type='number' name='hp' onChange={(e) => handleChange(e)} />
 
-        <label
-          className={style.labelCreate}
-          type='number'
-          value={input.weight}
-          name='weight'
-          for='weight'>
-          Peso :
-        </label>
-        <input id={input.weight} />
+        <label for='speed'>Velocidad :</label>
+        <input type='number' name='speed' onChange={(e) => handleChange(e)} />
 
-        <label
-          className={style.labelCreate}
-          type='number'
-          value={input.height}
-          name='height'
-          for='height'>
-          Altura :
-        </label>
-        <input id={input.height} />
+        <label for='weight'>Peso :</label>
+        <input type='number' name='weight' onChange={(e) => handleChange(e)} />
 
-        <label
-          className={style.labelCreate}
-          type='number'
-          value={input.name}
-          name='name'
-          for='types'>
-          Tipos :
-        </label>
-        <input id={input.types} />
+        <label for='height'>Altura :</label>
+        <input type='number' name='height' onChange={(e) => handleChange(e)} />
 
-        <button className={style.submitCreate} type='submit'>
+        <label for='img'>Imagen :</label>
+        <input type='text' name='img' onChange={(e) => handleChange(e)} />
+
+        <label for='types'>Tipo(s) :</label>
+
+        <select className={style.select} onChange={(e) => handleSelect(e)}>
+          {types.map((t) => (
+            <option value={t.name}>{t.name}</option>
+          ))}
+        </select>
+
+        <select className={style.select} onChange={(e) => handleSelect(e)}>
+          <option>ninguno</option>
+          {types.map((t) => (
+            <option value={t.name}>{t.name}</option>
+          ))}
+        </select>
+        <button
+          className={style.submitCreate}
+          type='submit'
+          onSubmit={(e) => handleSubmit(e)}>
           Crear
         </button>
       </form>

@@ -110,7 +110,7 @@ const Home = () => {
               onClick={(e) => {
                 handleSearchSubmit(e)
               }}>
-              @
+              ▶
             </button>
           </span>
         </div>

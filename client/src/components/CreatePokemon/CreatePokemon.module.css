@@ -7,7 +7,7 @@
   background: url(../../assets/img/background.png) center/cover no-repeat;
 }
 
-.container h1 {
+.container .title {
   font-size: 1.8rem;
   font-family: PokemonGB;
 
@@ -52,7 +52,14 @@
   width: 100%;
   padding: 0.7em;
 
-  font-family: PokemonGB;
+  background: lightgray;
+}
+
+.formCreate .select {
+  grid-column: 2 / 3;
+
+  width: 100%;
+  padding: 0.7em;
 
   background: lightgray;
 }
@@ -61,7 +68,6 @@
   grid-column: 1 / 2;
   align-self: center;
 
-  font-family: PokemonGB;
   font-size: 0.8rem;
   text-align: right;
 }
@@ -73,4 +79,12 @@
 
 .formCreate input:focus {
   outline: 3px solid gold;
+}
+
+.formCreate option,
+label,
+.select,
+button,
+input {
+  font-family: PokemonGB;
 }
