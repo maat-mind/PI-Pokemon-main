@@ -52,9 +52,27 @@ router.post('/pokemons', async (req, res) => {
     height,
     weight,
     userCreated,
+    img,
   } = req.body
 
   try {
+    if (
+      !name ||
+      !hp ||
+      !attack ||
+      !defense ||
+      !speed ||
+      !height ||
+      !weight ||
+      !img ||
+      !types
+    )
+      return res.status(400).json({ message: 'falta información' })
+
+    const findPokemon = await Pokemon.findOne({ where: { name } })
+
+    if (findPokemon) return res.status(400).json({ message: 'nombre en uso' })
+
     const newPokemon = await Pokemon.create({
       name,
       hp,
@@ -63,6 +81,7 @@ router.post('/pokemons', async (req, res) => {
       speed,
       height,
       weight,
+      img,
       userCreated,
     })
 
@@ -73,7 +92,7 @@ router.post('/pokemons', async (req, res) => {
       await newPokemon.addType(pokemonType)
     })
 
-    res.send('Created Successfully')
+    res.json(newPokemon)
   } catch (error) {
     return res.status(500).json({ message: error.message })
   }
