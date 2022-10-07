@@ -24,7 +24,6 @@ const CreatePokemon = () => {
       ...input,
       [e.target.name]: e.target.value,
     })
-    console.log(input)
   }
 
   const handleSelect = (e) => {
@@ -35,7 +34,6 @@ const CreatePokemon = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
     dispatch(postPokemon(input))
     alert('¡Creaste un Pokemón!')
 
@@ -105,7 +103,7 @@ const CreatePokemon = () => {
         <button
           className={style.submitCreate}
           type='submit'
-          onSubmit={(e) => handleSubmit(e)}>
+          onClick={(e) => handleSubmit(e)}>
           Crear
         </button>
       </form>
