@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import attackIcon from '../../assets/icons/attack.png'
 import defenseIcon from '../../assets/icons/defense.png'
 import heightIcon from '../../assets/icons/height.png'
@@ -19,11 +19,18 @@ const Card = ({
   speed,
   types,
 }) => {
+  const [isActive, setActive] = useState(false)
+
   return (
     <section className={style.pokemonCard}>
       <h1 className={style.pokemonName}>{name}</h1>
       <img className={style.pokemonImage} src={img} alt={name} />
-      <div className={style.stats}>
+      <button
+        className={style.btnToggleActive}
+        onClick={() => setActive(!isActive)}>
+        info
+      </button>
+      <div className={isActive ? `${style.statsActive}` : `${style.stats}`}>
         <p>
           <img className={style.statIcon} src={hpIcon} alt='hp icon' />
           {hp}
