@@ -85,6 +85,16 @@
 label,
 .select,
 button,
-input {
+input,
+.error {
   font-family: PokemonGB;
+}
+
+.error {
+  grid-column: 2 / 3;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  color: crimson;
 }
