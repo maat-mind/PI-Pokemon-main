@@ -87,7 +87,7 @@ export const getDetail = (id) => {
       let pokemon = await axios.get(`${URL}/pokemons/${id}`)
       return dispatch({
         type: 'GET_DETAIL',
-        payload: pokemon.data,
+        payload: pokemon.data[0],
       })
     } catch (error) {
       return dispatch({

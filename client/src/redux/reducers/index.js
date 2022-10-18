@@ -89,16 +89,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemonDetail: action.payload,
       }
-    /*     case 'CLEAN_DETAIL':
-      return {
-        ...state,
-        pokemonDetail: action.payload,
-      }
-    case 'CLEAN_POKEMONS':
-      return {
-        ...state,
-        pokemons: action.payload,
-      } */
     default:
       return state
   }
