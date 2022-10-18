@@ -7,6 +7,7 @@ import style from './CreatePokemon.module.css'
 const CreatePokemon = () => {
   const dispatch = useDispatch()
   const types = useSelector((state) => state.types)
+  const stateError = useSelector((state) => state.error)
 
   const [errors, setErrors] = useState({
     name: '',
@@ -63,7 +64,9 @@ const CreatePokemon = () => {
     e.preventDefault()
     const { name, hp, attack, defense, speed, height, weight } = input
 
-    if (name && hp && attack && defense && speed && height && weight) {
+    if (stateError.length) {
+      alert(stateError)
+    } else if (name && hp && attack && defense && speed && height && weight) {
       dispatch(postPokemon(input))
       alert('¡Creaste un nuevo Pokemon!')
     } else {

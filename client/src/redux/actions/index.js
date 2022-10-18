@@ -66,7 +66,10 @@ export const postPokemon = (payload) => {
   return async (dispatch) => {
     try {
       let newPokemon = await axios.post(`${URL}/pokemons`, payload)
-      return newPokemon
+      return dispatch({
+        type: 'POST_POKEMON',
+        payload: newPokemon,
+      })
     } catch (error) {
       return dispatch({
         type: 'ERROR',
@@ -125,3 +128,18 @@ export const orderByName = (payload) => {
     payload,
   }
 }
+
+/* export const cleanDetail = (dispatch) => {
+  return dispatch({
+    type: 'CLEAN_DETAIL',
+    payload: [],
+  })
+}
+
+export const cleanPokemons = (dispatch) => {
+  return dispatch({
+    type: 'CLEAN_POKEMONS',
+    payload: [],
+  })
+}
+ */

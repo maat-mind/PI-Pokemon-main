@@ -5,21 +5,22 @@ import { getDetail } from '../../redux/actions'
 // import style from './DetailPokemon.module.css'
 
 const DetailPokemon = () => {
-  const dispatch = useDispatch()
-
   const { id } = useParams()
+
+  const dispatch = useDispatch()
+  const pokemon = useSelector((state) => state.pokemonDetail)
 
   useEffect(() => {
     dispatch(getDetail(id))
-  })
+  }, [dispatch, id])
 
-  const pokemon = useSelector((state) => state.pokemonDetail)
-
+  console.log(pokemon)
   return (
     <>
       <Link to='/home'>
         <button>◃</button>
       </Link>
+
       <h1>{pokemon[0].name}</h1>
       <img src={pokemon[0].img} alt={pokemon[0].name} />
       <p> {pokemon[0].hp}</p>
