@@ -2,6 +2,14 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { getDetail } from '../../redux/actions'
+
+import attackIcon from '../../assets/icons/attack.png'
+import defenseIcon from '../../assets/icons/defense.png'
+import heightIcon from '../../assets/icons/height.png'
+import hpIcon from '../../assets/icons/hp.png'
+import speedIcon from '../../assets/icons/speed.png'
+import weightIcon from '../../assets/icons/weight.png'
+
 // import style from './DetailPokemon.module.css'
 
 const DetailPokemon = () => {
