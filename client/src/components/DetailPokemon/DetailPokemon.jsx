@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
-import { getDetail } from '../../redux/actions'
+import { getDetail, getTypes } from '../../redux/actions'
 
 import attackIcon from '../../assets/icons/attack.png'
 import defenseIcon from '../../assets/icons/defense.png'
@@ -16,13 +16,12 @@ const DetailPokemon = () => {
   const { id } = useParams()
 
   const dispatch = useDispatch()
-  const p = useSelector((state) => {
-    return state.pokemonDetail
-  })
+  const pokemon = useSelector((state) => state.pokemonDetail)
+  console.log(pokemon)
 
   useEffect(() => {
     dispatch(getDetail(id))
-  })
+  }, [id, dispatch])
 
   return (
     <>
@@ -30,37 +29,39 @@ const DetailPokemon = () => {
         <button>◃</button>
       </Link>
 
-      <h1 className={style.pokemonName}>{p.name}</h1>
-      <img className={style.pokemonImage} src={p.img} alt={p.name} />
+      <h1 className={style.pokemonName}>{pokemon.name}</h1>
+      <img
+        className={style.pokemonImage}
+        src={pokemon.img}
+        alt={pokemon.name}
+      />
       <p>
         <img className={style.statIcon} src={hpIcon} alt='hp icon' />
-        {p.hp}
+        {pokemon.hp}
       </p>
       <p>
         <img className={style.statIcon} src={attackIcon} alt='attack icon' />
-        {p.attack}
+        {pokemon.attack}
       </p>
       <p>
         <img className={style.statIcon} src={defenseIcon} alt='defense icon' />
-        {p.defense}
+        {pokemon.defense}
       </p>
       <p>
         <img className={style.statIcon} src={speedIcon} alt='speed icon' />
-        {p.speed}
+        {pokemon.speed}
       </p>
       <p>
         <img className={style.statIcon} src={weightIcon} alt='weight icon' />
-        {p.weight} hg
+        {pokemon.weight} hg
       </p>
       <p>
         <img className={style.statIcon} src={heightIcon} alt='height icon' />
-        {p.height} dm
+        {pokemon.height} dm
       </p>
-      <p>
-        {p.types.map((e) => {
-          return <span className={`${style.type} ${e}`}>{e}</span>
-        })}
-      </p>
+      {/* {pokemon.types.map((e) => (
+        <span className={`${style.type} ${e}`}>{e}</span>
+      ))} */}
     </>
   )
 }

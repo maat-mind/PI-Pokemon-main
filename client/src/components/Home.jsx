@@ -181,20 +181,19 @@ const Home = () => {
         {currentPokemons?.map((p) => {
           return (
             <>
-              <Link to={`/home/${p.id}`}>
-                <Card
-                  key={p.id}
-                  name={p.name}
-                  img={p.img}
-                  hp={p.hp}
-                  attack={p.attack}
-                  defense={p.defense}
-                  weight={p.weight}
-                  height={p.height}
-                  speed={p.speed}
-                  types={p.types}
-                />
-              </Link>
+              <Card
+                key={p.id}
+                id={p.id}
+                name={p.name}
+                img={p.img}
+                hp={p.hp}
+                attack={p.attack}
+                defense={p.defense}
+                weight={p.weight}
+                height={p.height}
+                speed={p.speed}
+                types={p.types}
+              />
             </>
           )
         })}
