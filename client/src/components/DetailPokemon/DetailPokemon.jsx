@@ -23,7 +23,7 @@ const DetailPokemon = () => {
     dispatch(getDetail(id))
   }, [id, dispatch])
 
-  if (Array.isArray(pokemon)) {
+  if (Array.isArray(pokemon) || pokemon.id != id) {
     return (
       <main className={style.mainDetail}>
         <img src={loading} alt="loading gif"/>
