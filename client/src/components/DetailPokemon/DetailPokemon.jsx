@@ -32,12 +32,15 @@ const DetailPokemon = () => {
   } else {
     return (
       <main className={style.mainDetail}>
-        <Link to="/home">
-          <button>◃</button>
-        </Link>
-
         <div className={style.cardDetail}>
-          <h1 className={style.pokemonName}>{pokemon.name}</h1>
+
+          <header className={style.headerDetail}>
+            <Link to="/home">
+              <button className={style.btnReturn}>◃</button>
+            </Link>
+            <h1 className={style.pokemonName}>{pokemon.name}</h1>
+          </header>
+
           <img
             className={style.pokemonImage}
             src={pokemon.img}

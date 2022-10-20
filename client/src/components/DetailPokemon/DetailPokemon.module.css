@@ -19,6 +19,11 @@
     border-radius: 15px;
 }
 
+.headerDetail {
+    display: flex;
+    justify-content: center;
+}
+
 .cardStats {
     display: flex;
     flex-wrap: wrap;
@@ -45,4 +50,12 @@
 
 .pokemonName {
     font-size: 2.6rem;
+}
+
+.btnReturn {
+    position: relative;
+    right: 80px;
+
+    width: 40px;
+    height: 25px;
 }
