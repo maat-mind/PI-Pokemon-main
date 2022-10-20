@@ -112,3 +112,5 @@ package-lock.json
 
 .fleet/
 .fleet
+
+.idea
