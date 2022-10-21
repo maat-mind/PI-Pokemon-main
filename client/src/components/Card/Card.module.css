@@ -1,73 +1,71 @@
 .pokemonImage {
-  width: 200px;
+    width: 200px;
 
-  user-select: none;
-  -drag: none;
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
 }
 
 .pokemonCard {
-  width: 285px;
+    width: 285px;
 
-  padding: 10px;
-  margin: 10px;
+    padding: 10px;
+    margin: 10px;
 
-  border: 5px solid rgb(236, 250, 47);
-  border-radius: 15px;
+    border: 5px solid rgb(236, 250, 47);
+    border-radius: 15px;
 
-  background-color: rgba(236, 250, 47, 0.4);
-  transition: background-color 1s ease-out 100ms;
+    background-color: rgba(236, 250, 47, 0.4);
+    transition: background-color 1s ease-out 100ms;
 }
 
 .pokemonCard:hover {
-  background-color: rgba(236, 250, 47, 0.8);
+    background-color: rgba(236, 250, 47, 0.8);
 }
 
 .statIcon {
-  width: 25px;
-  height: 25px;
+    width: 25px;
+    height: 25px;
 }
 
 .stats {
-  display: none;
-  visibility: hidden;
+    display: none;
+    visibility: hidden;
 }
 
 .statsActive {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 
-  justify-content: space-evenly;
-  align-items: center;
+    justify-content: space-evenly;
+    align-items: center;
 
-  width: 80%;
-  margin: 0 auto;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .btnToggleActive {
-  width: auto;
+    width: auto;
 
-  padding: 5px;
-  margin: 5px;
+    padding: 5px;
+    margin: 5px;
 }
 
 .type {
-  margin: 10px;
-  padding: 5px 8px 5px 8px;
-  display: inline-block;
-  border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -o-border-radius: 6px;
-  font-size: 13px;
-  font-family: 'helvetica neue', Helvetica, Verdana, sans-serif;
-  color: #fff;
-  background-color: #68a090;
-  border: 1px solid #44685e;
+    margin: 10px;
+    padding: 5px 8px 5px 8px;
+    display: inline-block;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    font-size: 13px;
+    font-family: 'helvetica neue', Helvetica, Verdana, sans-serif;
+    color: #fff;
+    background-color: #68a090;
+    border: 1px solid #44685e;
 }
 
 .pokemonName {
-  font-size: 1.6rem;
+    font-size: 1.6rem;
 }

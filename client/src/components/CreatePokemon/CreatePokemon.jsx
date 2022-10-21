@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { getTypes, postPokemon } from '../../redux/actions'
+import {useEffect, useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {getTypes, postPokemon} from '../../redux/actions'
 import style from './CreatePokemon.module.css'
 
 const CreatePokemon = () => {
@@ -62,7 +62,7 @@ const CreatePokemon = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const { name, hp, attack, defense, speed, height, weight } = input
+    const {name, hp, attack, defense, speed, height, weight} = input
 
     if (stateError.length) {
       alert(stateError)
@@ -82,44 +82,44 @@ const CreatePokemon = () => {
   return (
     <div className={style.container}>
       <span className={style.titleCreate}>
-        <Link to='/home'>
+        <Link to="/home">
           <button>◃</button>
         </Link>
         <h1 className={style.title}>Crea tu pokemón</h1>
       </span>
       <form className={style.formCreate}>
-        <label for='name'>Nombre :</label>
-        <input type='text' name='name' onChange={(e) => handleChange(e)} />
+        <label>Nombre :</label>
+        <input type="text" name="name" onChange={(e) => handleChange(e)}/>
         {errors.name && <p className={style.error}>{errors.name}</p>}
 
-        <label for='attack'>Ataque :</label>
-        <input type='number' name='attack' onChange={(e) => handleChange(e)} />
+        <label>Ataque :</label>
+        <input type="number" name="attack" onChange={(e) => handleChange(e)}/>
         {errors.attack && <p className={style.error}>{errors.attack}</p>}
 
-        <label for='defense'>Defensa :</label>
-        <input type='number' name='defense' onChange={(e) => handleChange(e)} />
+        <label>Defensa :</label>
+        <input type="number" name="defense" onChange={(e) => handleChange(e)}/>
         {errors.defense && <p className={style.error}>{errors.defense}</p>}
 
-        <label for='hp'>Vida :</label>
-        <input type='number' name='hp' onChange={(e) => handleChange(e)} />
+        <label>Vida :</label>
+        <input type="number" name="hp" onChange={(e) => handleChange(e)}/>
         {errors.hp && <p className={style.error}>{errors.hp}</p>}
 
-        <label for='speed'>Velocidad :</label>
-        <input type='number' name='speed' onChange={(e) => handleChange(e)} />
+        <label>Velocidad :</label>
+        <input type="number" name="speed" onChange={(e) => handleChange(e)}/>
         {errors.speed && <p className={style.error}>{errors.speed}</p>}
 
-        <label for='weight'>Peso :</label>
-        <input type='number' name='weight' onChange={(e) => handleChange(e)} />
+        <label>Peso :</label>
+        <input type="number" name="weight" onChange={(e) => handleChange(e)}/>
         {errors.weight && <p className={style.error}>{errors.weight}</p>}
 
-        <label for='height'>Altura :</label>
-        <input type='number' name='height' onChange={(e) => handleChange(e)} />
+        <label>Altura :</label>
+        <input type="number" name="height" onChange={(e) => handleChange(e)}/>
         {errors.height && <p className={style.error}>{errors.height}</p>}
 
-        <label for='img'>Imagen :</label>
-        <input type='text' name='img' onChange={(e) => handleChange(e)} />
+        <label>Imagen :</label>
+        <input type="text" name="img" onChange={(e) => handleChange(e)}/>
 
-        <label for='types'>Tipo(s) :</label>
+        <label>Tipo(s) :</label>
 
         <select className={style.select} onChange={(e) => handleSelect(e)}>
           <option>ninguno</option>
@@ -135,8 +135,7 @@ const CreatePokemon = () => {
           ))}
         </select>
         <button
-          className={style.submitCreate}
-          type='submit'
+          type="submit"
           onClick={(e) => handleSubmit(e)}>
           Crear
         </button>
