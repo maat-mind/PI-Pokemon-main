@@ -1,13 +1,15 @@
 import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {getTypes, postPokemon} from '../../redux/actions'
+import {getAllPokemons, getByName, getTypes, postPokemon} from '../../redux/actions'
 import style from './CreatePokemon.module.css'
 
 const CreatePokemon = () => {
   const dispatch = useDispatch()
   const types = useSelector((state) => state.types)
   const stateError = useSelector((state) => state.error)
+  const allPokemon = useSelector((state) => state.pokemons)
+
 
   const [errors, setErrors] = useState({
     name: '',
@@ -29,6 +31,7 @@ const CreatePokemon = () => {
     types: [],
   })
 
+
   const regNum = (n) => /^[0-9]{0,3}$/.test(n)
 
   const regStr = (n) => /^[a-zA-Z]{0,20}$/.test(n)
@@ -40,6 +43,11 @@ const CreatePokemon = () => {
         : (errors[key] = 'Solo números (entre 0 y 999)')
     }
     regStr(e.name) ? (errors.name = '') : (errors.name = 'Solo letras')
+
+    const findName = allPokemon.filter(p => p.name === input.name)
+
+    if (!!findName.length) errors.name = 'el pokemón ya existe'
+
 
     return errors
   }
@@ -77,6 +85,7 @@ const CreatePokemon = () => {
 
   useEffect(() => {
     dispatch(getTypes())
+    dispatch(getAllPokemons())
   }, [dispatch])
 
   return (
