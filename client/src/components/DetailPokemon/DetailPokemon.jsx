@@ -12,6 +12,7 @@ import weightIcon from '../../assets/icons/weight.png'
 import loading from '../../assets/img/loading.gif'
 
 import style from './DetailPokemon.module.css'
+import '../Card/Types.css'
 
 const DetailPokemon = () => {
   const {id} = useParams()
@@ -75,6 +76,11 @@ const DetailPokemon = () => {
             <p className={style.textStat}>
               <img className={style.statIcon} src={heightIcon} alt="height icon"/>
               {pokemon.height} dm
+            </p>
+            <p>
+              {pokemon.types.map((e) => {
+                return <span className={`${'type'} ${e}`}>{e}</span>
+              })}
             </p>
           </div>
         </div>
