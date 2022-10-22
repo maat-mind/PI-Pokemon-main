@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {getAllPokemons, getByName, getTypes, postPokemon} from '../../redux/actions'
 import style from './CreatePokemon.module.css'
 
@@ -9,7 +9,10 @@ const CreatePokemon = () => {
   const types = useSelector((state) => state.types)
   const stateError = useSelector((state) => state.error)
   const allPokemon = useSelector((state) => state.pokemons)
+  const history = useHistory()
 
+
+  const [areErrors, setAreErrors] = useState(false)
 
   const [errors, setErrors] = useState({
     name: '',
@@ -31,7 +34,6 @@ const CreatePokemon = () => {
     types: [],
   })
 
-
   const regNum = (n) => /^[0-9]{0,3}$/.test(n)
 
   const regStr = (n) => /^[a-zA-Z]{0,20}$/.test(n)
@@ -48,12 +50,17 @@ const CreatePokemon = () => {
 
     if (!!findName.length) errors.name = 'el pokemón ya existe'
 
-
     return errors
   }
 
   const handleChange = (e) => {
     setErrors(validate(input))
+
+    if (errors.name || errors.attack || errors.defense || errors.hp || errors.speed || errors.weight || errors.height) {
+      setAreErrors(true)
+    } else {
+      setAreErrors(false)
+    }
 
     setInput({
       ...input,
@@ -69,19 +76,24 @@ const CreatePokemon = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const {name, hp, attack, defense, speed, height, weight} = input
-
-    if (stateError.length) {
-      alert(stateError)
-    } else if (name && hp && attack && defense && speed && height && weight) {
-      dispatch(postPokemon(input))
-      alert('¡Creaste un nuevo Pokemon!')
+    if (areErrors) {
+      e.preventDefault()
+      alert('hay errores: revisa los mensajes de error')
     } else {
-      console.log(input)
-      alert('Te faltan llenar campos')
+      e.preventDefault()
+      const {name, hp, attack, defense, speed, height, weight} = input
+
+      if (name && hp && attack && defense && speed && height && weight) {
+        dispatch(postPokemon(input))
+        history.push('/home')
+        alert('¡Creaste un nuevo Pokemon!')
+      } else {
+        alert('Te faltan llenar campos')
+      }
     }
+
   }
+
 
   useEffect(() => {
     dispatch(getTypes())
