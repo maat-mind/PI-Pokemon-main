@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Pokecenter from '../assets/icons/pokecenter_icon.png'
+import loading from '../assets/img/loading.gif'
 import {
   filterByType,
   filterByUserCreated,
@@ -34,6 +35,7 @@ const Home = () => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault()
+    console.log('name:', name)
     dispatch(getByName(name))
   }
 
@@ -70,6 +72,7 @@ const Home = () => {
 
   useEffect(() => {
     setCurrentPokemons(allPokemons?.slice(range.first, range.last))
+    console.log('pokemon (all)', allPokemons)
   }, [allPokemons, range.first, range.last])
 
   useEffect(() => {
@@ -83,131 +86,146 @@ const Home = () => {
     dispatch(getAllPokemons())
   }, [dispatch])
 
-  return (
-    <div className={style.container}>
-      <header className={style.headerHome}>
-        <div className={style.buttons}>
-          <Link to='/create'>
-            <button className={style.btnPokemon}> Crear un Pokemón</button>
-          </Link>
-          <button
-            className={style.btnPokemon}
-            onClick={(e) => {
-              handleRefresh(e)
-            }}>
-            Recargar
-          </button>
-          <span>
-            <input
-              type='text'
-              className={style.buscarPokemon}
-              placeholder='Buscar...'
-              onChange={(e) => {
-                handleSearchChange(e)
-              }}
-            />
-            <button
-              onClick={(e) => {
-                handleSearchSubmit(e)
-              }}>
-              ▶
-            </button>
-          </span>
-        </div>
-
-        <Link to={'/'}>
+  if (!allPokemons.length) {
+    return (
+      <div className={style.container}>
+        <header className={style.headerHome}></header>
+        <section className={style.cards}>
           <img
-            className={style.pokecenterIcon}
-            src={Pokecenter}
-            alt='pokecenter icon'
+            src={loading}
+            alt='loading gif'
+            style={{ width: '300px', height: '280px' }}
           />
-        </Link>
-
-        <section className={style.filters}>
-          <select
-            onChange={(e) => {
-              handleSortByName(e)
-            }}>
-            <option value='all'>Orden</option>
-            <option value='asc'>Ascendente</option>
-            <option value='desc'>Descendente</option>
-          </select>
-          <select
-            onChange={(e) => {
-              handleFilterByUserCreated(e)
-            }}>
-            <option value='all'>Origen</option>
-            <option value='api'>Originales</option>
-            <option value='created'>Creados</option>
-          </select>
-          <select
-            onChange={(e) => {
-              handleSortByAttack(e)
-            }}>
-            <option value='all'>Orden ATK</option>
-            <option value='asc'>Ascendente</option>
-            <option value='desc'>Descendente</option>
-          </select>
-          <select
-            onChange={(e) => {
-              handleFilterByType(e)
-            }}>
-            <option value='all'>Tipos</option>
-            <option value='bug'>Bug</option>
-            <option value='dragon'>Dragon</option>
-            <option value='dark'>Dark</option>
-            <option value='electric'>Electric</option>
-            <option value='fairy'>Fairy</option>
-            <option value='fighting'>Fighting</option>
-            <option value='fire'>Fire</option>
-            <option value='flying'>Flying</option>
-            <option value='grass'>Grass</option>
-            <option value='ghost'>Ghost</option>
-            <option value='ground'>Ground</option>
-            <option value='ice'>Ice</option>
-            <option value='normal'>Normal</option>
-            <option value='poison'>Poison</option>
-            <option value='physic'>Psychic</option>
-            <option value='rock'>Rock</option>
-            <option value='shadow'>Shadow</option>
-            <option value='steel'>Steel</option>
-            <option value='water'>Water</option>
-            <option value='unknown'>Unknown</option>
-          </select>
         </section>
-      </header>
-
-      <section className={style.cards}>
-        {currentPokemons?.map((p) => {
-          return (
-            <>
-              <Card
-                key={p.id}
-                id={p.id}
-                name={p.name}
-                img={p.img}
-                hp={p.hp}
-                attack={p.attack}
-                defense={p.defense}
-                weight={p.weight}
-                height={p.height}
-                speed={p.speed}
-                types={p.types}
+      </div>
+    )
+  } else {
+    return (
+      <div className={style.container}>
+        <header className={style.headerHome}>
+          <div className={style.buttons}>
+            <Link to='/create'>
+              <button className={style.btnPokemon}> Crear un Pokemón</button>
+            </Link>
+            <button
+              className={style.btnPokemon}
+              onClick={(e) => {
+                handleRefresh(e)
+              }}>
+              Recargar
+            </button>
+            <span>
+              <input
+                type='text'
+                className={style.buscarPokemon}
+                placeholder='Buscar...'
+                onChange={(e) => {
+                  handleSearchChange(e)
+                }}
               />
-            </>
-          )
-        })}
-      </section>
-      <footer className={style.footerHome}>
-        <Pagination
-          pokemonPerPage={pokemonPerPage}
-          allPokemons={allPokemons?.length}
-          pagination={pagination}
-          currentPage={currentPage}
-        />
-      </footer>
-    </div>
-  )
+              <button
+                onClick={(e) => {
+                  handleSearchSubmit(e)
+                }}>
+                ▶
+              </button>
+            </span>
+          </div>
+
+          <Link to={'/'}>
+            <img
+              className={style.pokecenterIcon}
+              src={Pokecenter}
+              alt='pokecenter icon'
+            />
+          </Link>
+
+          <section className={style.filters}>
+            <select
+              onChange={(e) => {
+                handleSortByName(e)
+              }}>
+              <option value='all'>Orden</option>
+              <option value='asc'>Ascendente</option>
+              <option value='desc'>Descendente</option>
+            </select>
+            <select
+              onChange={(e) => {
+                handleFilterByUserCreated(e)
+              }}>
+              <option value='all'>Origen</option>
+              <option value='api'>Originales</option>
+              <option value='created'>Creados</option>
+            </select>
+            <select
+              onChange={(e) => {
+                handleSortByAttack(e)
+              }}>
+              <option value='all'>Orden ATK</option>
+              <option value='asc'>Ascendente</option>
+              <option value='desc'>Descendente</option>
+            </select>
+            <select
+              onChange={(e) => {
+                handleFilterByType(e)
+              }}>
+              <option value='all'>Tipos</option>
+              <option value='bug'>Bug</option>
+              <option value='dragon'>Dragon</option>
+              <option value='dark'>Dark</option>
+              <option value='electric'>Electric</option>
+              <option value='fairy'>Fairy</option>
+              <option value='fighting'>Fighting</option>
+              <option value='fire'>Fire</option>
+              <option value='flying'>Flying</option>
+              <option value='grass'>Grass</option>
+              <option value='ghost'>Ghost</option>
+              <option value='ground'>Ground</option>
+              <option value='ice'>Ice</option>
+              <option value='normal'>Normal</option>
+              <option value='poison'>Poison</option>
+              <option value='physic'>Psychic</option>
+              <option value='rock'>Rock</option>
+              <option value='shadow'>Shadow</option>
+              <option value='steel'>Steel</option>
+              <option value='water'>Water</option>
+              <option value='unknown'>Unknown</option>
+            </select>
+          </section>
+        </header>
+
+        <section className={style.cards}>
+          {currentPokemons?.map((p) => {
+            return (
+              <>
+                <Card
+                  key={p.id}
+                  id={p.id}
+                  name={p.name}
+                  img={p.img}
+                  hp={p.hp}
+                  attack={p.attack}
+                  defense={p.defense}
+                  weight={p.weight}
+                  height={p.height}
+                  speed={p.speed}
+                  types={p.types}
+                />
+              </>
+            )
+          })}
+        </section>
+        <footer className={style.footerHome}>
+          <Pagination
+            pokemonPerPage={pokemonPerPage}
+            allPokemons={allPokemons?.length}
+            pagination={pagination}
+            currentPage={currentPage}
+          />
+        </footer>
+      </div>
+    )
+  }
 }
 
 export default Home

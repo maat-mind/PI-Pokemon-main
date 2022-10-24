@@ -79,7 +79,7 @@ const DetailPokemon = () => {
             </p>
             <p>
               {pokemon.types.map((e) => {
-                return <span className={`${'type'} ${e}`}>{e}</span>
+                return <span className={`type ${e}`}>{e}</span>
               })}
             </p>
           </div>
