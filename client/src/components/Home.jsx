@@ -27,7 +27,6 @@ const Home = () => {
   )
 
   const [name, setName] = useState('')
-
   const handleSearchChange = (e) => {
     e.preventDefault()
     setName(e.target.value)
@@ -35,8 +34,9 @@ const Home = () => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault()
-    console.log('name:', name)
     dispatch(getByName(name))
+    setCurrentPage(1)
+    setName('')
   }
 
   const handleFilterByType = (e) => {
@@ -89,7 +89,15 @@ const Home = () => {
   if (!allPokemons.length) {
     return (
       <div className={style.container}>
-        <header className={style.headerHome}></header>
+        <header className={style.headerHome}>
+          <Link to={'/'}>
+            <img
+              className={style.pokecenterIcon}
+              src={Pokecenter}
+              alt='pokecenter icon'
+            />
+          </Link>
+        </header>
         <section className={style.cards}>
           <img
             src={loading}
@@ -97,6 +105,7 @@ const Home = () => {
             style={{ width: '300px', height: '280px' }}
           />
         </section>
+        <footer className={style.footerHome}></footer>
       </div>
     )
   } else {
@@ -108,6 +117,7 @@ const Home = () => {
               <button className={style.btnPokemon}> Crear un Pokemón</button>
             </Link>
             <button
+              type='submit'
               className={style.btnPokemon}
               onClick={(e) => {
                 handleRefresh(e)
@@ -215,6 +225,7 @@ const Home = () => {
             )
           })}
         </section>
+
         <footer className={style.footerHome}>
           <Pagination
             pokemonPerPage={pokemonPerPage}
