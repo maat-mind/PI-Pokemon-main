@@ -72,7 +72,6 @@ const Home = () => {
 
   useEffect(() => {
     setCurrentPokemons(allPokemons?.slice(range.first, range.last))
-    console.log('pokemon (all)', allPokemons)
   }, [allPokemons, range.first, range.last])
 
   useEffect(() => {

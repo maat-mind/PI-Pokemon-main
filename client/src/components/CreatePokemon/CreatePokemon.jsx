@@ -1,16 +1,14 @@
-import {useEffect, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {Link, useHistory} from 'react-router-dom'
-import {getAllPokemons, getByName, getTypes, postPokemon} from '../../redux/actions'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
+import { getAllPokemons, getTypes, postPokemon } from '../../redux/actions'
 import style from './CreatePokemon.module.css'
 
 const CreatePokemon = () => {
   const dispatch = useDispatch()
   const types = useSelector((state) => state.types)
-  const stateError = useSelector((state) => state.error)
   const allPokemon = useSelector((state) => state.pokemons)
   const history = useHistory()
-
 
   const [areErrors, setAreErrors] = useState(false)
 
@@ -46,7 +44,7 @@ const CreatePokemon = () => {
     }
     regStr(e.name) ? (errors.name = '') : (errors.name = 'Solo letras')
 
-    const findName = allPokemon.filter(p => p.name === input.name)
+    const findName = allPokemon.filter((p) => p.name === input.name)
 
     if (!!findName.length) errors.name = 'el pokemón ya existe'
 
@@ -56,7 +54,15 @@ const CreatePokemon = () => {
   const handleChange = (e) => {
     setErrors(validate(input))
 
-    if (errors.name || errors.attack || errors.defense || errors.hp || errors.speed || errors.weight || errors.height) {
+    if (
+      errors.name ||
+      errors.attack ||
+      errors.defense ||
+      errors.hp ||
+      errors.speed ||
+      errors.weight ||
+      errors.height
+    ) {
       setAreErrors(true)
     } else {
       setAreErrors(false)
@@ -69,10 +75,18 @@ const CreatePokemon = () => {
   }
 
   const handleSelect = (e) => {
-    setInput({
-      ...input,
-      types: [...input.types, e.target.value],
-    })
+    const typesSelected = []
+    input.types.map((t) => typesSelected.push(t))
+
+    if (typesSelected.includes(e.target.value)) {
+      alert('Un pokemón no puede repetir el mismo tipo')
+    } else {
+      e.target.disabled = true
+      setInput({
+        ...input,
+        types: [...input.types, e.target.value],
+      })
+    }
   }
 
   const handleSubmit = (e) => {
@@ -81,7 +95,7 @@ const CreatePokemon = () => {
       alert('hay errores: revisa los mensajes de error')
     } else {
       e.preventDefault()
-      const {name, hp, attack, defense, speed, height, weight} = input
+      const { name, hp, attack, defense, speed, height, weight } = input
 
       if (name && hp && attack && defense && speed && height && weight) {
         dispatch(postPokemon(input))
@@ -91,9 +105,7 @@ const CreatePokemon = () => {
         alert('Te faltan llenar campos')
       }
     }
-
   }
-
 
   useEffect(() => {
     dispatch(getTypes())
@@ -103,42 +115,42 @@ const CreatePokemon = () => {
   return (
     <div className={style.container}>
       <span className={style.titleCreate}>
-        <Link to="/home">
+        <Link to='/home'>
           <button>◃</button>
         </Link>
         <h1 className={style.title}>Crea tu pokemón</h1>
       </span>
       <form className={style.formCreate}>
         <label>Nombre :</label>
-        <input type="text" name="name" onChange={(e) => handleChange(e)}/>
+        <input type='text' name='name' onChange={(e) => handleChange(e)} />
         {errors.name && <p className={style.error}>{errors.name}</p>}
 
         <label>Ataque :</label>
-        <input type="number" name="attack" onChange={(e) => handleChange(e)}/>
+        <input type='number' name='attack' onChange={(e) => handleChange(e)} />
         {errors.attack && <p className={style.error}>{errors.attack}</p>}
 
         <label>Defensa :</label>
-        <input type="number" name="defense" onChange={(e) => handleChange(e)}/>
+        <input type='number' name='defense' onChange={(e) => handleChange(e)} />
         {errors.defense && <p className={style.error}>{errors.defense}</p>}
 
         <label>Vida :</label>
-        <input type="number" name="hp" onChange={(e) => handleChange(e)}/>
+        <input type='number' name='hp' onChange={(e) => handleChange(e)} />
         {errors.hp && <p className={style.error}>{errors.hp}</p>}
 
         <label>Velocidad :</label>
-        <input type="number" name="speed" onChange={(e) => handleChange(e)}/>
+        <input type='number' name='speed' onChange={(e) => handleChange(e)} />
         {errors.speed && <p className={style.error}>{errors.speed}</p>}
 
         <label>Peso :</label>
-        <input type="number" name="weight" onChange={(e) => handleChange(e)}/>
+        <input type='number' name='weight' onChange={(e) => handleChange(e)} />
         {errors.weight && <p className={style.error}>{errors.weight}</p>}
 
         <label>Altura :</label>
-        <input type="number" name="height" onChange={(e) => handleChange(e)}/>
+        <input type='number' name='height' onChange={(e) => handleChange(e)} />
         {errors.height && <p className={style.error}>{errors.height}</p>}
 
         <label>Imagen :</label>
-        <input type="text" name="img" onChange={(e) => handleChange(e)}/>
+        <input type='text' name='img' onChange={(e) => handleChange(e)} />
 
         <label>Tipo(s) :</label>
 
@@ -155,9 +167,7 @@ const CreatePokemon = () => {
             <option value={t.name}>{t.name}</option>
           ))}
         </select>
-        <button
-          type="submit"
-          onClick={(e) => handleSubmit(e)}>
+        <button type='submit' onClick={(e) => handleSubmit(e)}>
           Crear
         </button>
       </form>
