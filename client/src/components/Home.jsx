@@ -27,6 +27,13 @@ const Home = () => {
   )
 
   const [name, setName] = useState('')
+
+  const [activeFilter, setActiveFilter] = useState({
+    active: false,
+    type: '',
+    payload: '',
+  })
+
   const handleSearchChange = (e) => {
     e.preventDefault()
     setName(e.target.value)
@@ -39,8 +46,18 @@ const Home = () => {
     setName('')
   }
 
+  /* TODO 
+    1. probar en el redux tools cuando se regrese
+    2. con la propiedad active del estado efectuar el filtro al regresar
+    3. revisar cuando se carga home si hay algún filtro activo
+  */
   const handleFilterByType = (e) => {
     dispatch(filterByType(e.target.value))
+    setActiveFilter({
+      active: true,
+      type: 'FILTER_BY_TYPE',
+      payload: allPokemons,
+    })
   }
 
   const handleFilterByUserCreated = (e) => {
